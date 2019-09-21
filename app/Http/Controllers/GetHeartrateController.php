@@ -16,8 +16,15 @@ class GetHeartrateController extends Controller
         $BandID = $request->BandID;
         $log = MeasureLog::where('PersonalID',$PersonalID)
                         ->where('BandID',$BandID)
-                        ->avg('Heartrate');
-       // foreach($log as $log)
-            echo $log . " ";     
+                        ->get();
+        $split = explode(",",$log);
+        $num=0;$sum=0;
+        foreach($split as $i){
+            $num++;
+            $sum+=(int)$i;
+        }
+        //echo $sum . " " . $num . " "; 
+        echo (int)($sum/$num);
+       
     }
 }
