@@ -20,8 +20,11 @@ class GetHeartrateController extends Controller
         $split = explode(",",$log);
         $num=0;$sum=0;
         foreach($split as $i){
-            $num++;
-            $sum+=(int)$i;
+            if($i==0) continue;
+            else{
+                $num++;
+                $sum+=(int)$i;
+            }
         }
         //echo $sum . " " . $num . " "; 
         echo (int)($sum/$num);
